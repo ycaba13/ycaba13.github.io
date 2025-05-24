@@ -81,23 +81,36 @@
             margin-right: 6px;
         }
         
-        /* Hero Section */
+        /* Hero Section - New Layout */
         .hero {
             background-color: #2E7D32;
             color: white;
             padding: 120px 0 50px;
-            text-align: center;
         }
         
-        .hero h2 {
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-text {
+            padding-right: 20px;
+        }
+        
+        .hero-text h2 {
             font-size: 36px;
             margin-bottom: 20px;
         }
         
-        .hero p {
+        .hero-text p {
             font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            text-align: center;
         }
         
         .profile-image {
@@ -105,7 +118,7 @@
             height: 250px;
             border-radius: 50%;
             border: 5px solid white;
-            margin: 20px auto;
+            margin: 0 auto 20px;
             overflow: hidden;
         }
         
@@ -130,6 +143,58 @@
             background-color: #e9e9e9;
         }
         
+        /* Services Section - Now in Hero */
+        .hero-services {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero-services h3 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .service-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        .service-icon {
+            font-size: 36px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .service-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+        
         /* About Section */
         .section {
             padding: 60px 0;
@@ -146,37 +211,6 @@
             display: inline-block;
             padding-bottom: 10px;
             border-bottom: 3px solid #4CAF50;
-        }
-        
-        /* Services */
-        .services {
-            background-color: #f1f1f1;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-        
-        .service-icon {
-            font-size: 36px;
-            color: #4CAF50;
-            margin-bottom: 15px;
-        }
-        
-        .service-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #2E7D32;
         }
         
         /* Contact */
@@ -264,7 +298,17 @@
                 justify-content: center;
             }
             
-            .hero h2 {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+            }
+            
+            .hero-text h2 {
                 font-size: 28px;
             }
             
@@ -273,10 +317,33 @@
                 height: 200px;
             }
 
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .service-card {
                 padding: 20px 15px;
             }
         }
+    </style>
+    <style>
+        /* Font Awesome Icons - Inline CSS */
+        .fas, .fab {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
+            font-weight: 900;
+        }
+        .fab {
+            font-weight: 400;
+        }
+        .fa-phone:before { content: "📞"; }
+        .fa-envelope:before { content: "✉️"; }
+        .fa-map-marker-alt:before { content: "📍"; }
+        .fa-instagram:before { content: "📷"; }
+        .fa-weight:before { content: "⚖️"; }
+        .fa-procedures:before { content: "🏥"; }
+        .fa-running:before { content: "🏃"; }
+        .fa-heartbeat:before { content: "💓"; }
+        .fa-baby:before { content: "👶"; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -304,16 +371,63 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Services -->
     <section class="hero">
         <div class="container">
-            <h2>Sağlıklı Yaşam için Doğru Beslenme</h2>
-            <p>Kişiye özel beslenme programları ile sağlıklı bir yaşama adım atmanıza yardımcı oluyorum.</p>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Sağlıklı Yaşam için Doğru Beslenme</h2>
+                    <p>Kişiye özel beslenme programları ile sağlıklı bir yaşama adım atmanıza yardımcı oluyorum.</p>
+                    <a href="#contact" class="action-btn">İletişime Geç</a>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-image">
+                        <img src="2025-03-17.jpeg" alt="Diyetisyen İdil Altun Caba">
+                    </div>
+                </div>
+            </div>
             
-            <div class="profile-image">
-    <img src="2025-03-17.jpeg" alt="Diyetisyen İdil Altun Caba">
-</div>
-            <a href="#contact" class="action-btn">İletişime Geç</a>
+            <!-- Services in Hero -->
+            <div class="hero-services">
+                <h3>Hizmetlerim</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <h4 class="service-title">Kilo Yönetimi</h4>
+                        <p>Kişiye özel kilo verme veya alma programları ile sağlıklı bir vücuda kavuşmanıza yardımcı oluyorum.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <h4 class="service-title">Andulasyon Terapi</h4>
+                        <p>Andumedic 3 Pro cihazı ile uygulanan andulasyon terapi; kas ve eklem ağrılarını azaltır, kan dolaşımını iyileştirir, metabolizmayı hızlandırarak incelmeye yardımcı olur, stresi azaltır ve uyku kalitesini düzenler.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h4 class="service-title">Sporcu Beslenmesi</h4>
+                        <p>Fitness Nutrition Specailst (FNS) sertifikalı bir diyetisyen olarak performansınızı artırmak ve hedeflerinize ulaşmak için spor dalınıza özel beslenme programları hazırlıyorum.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4 class="service-title">Kronik Hastalıklarda Beslenme</h4>
+                        <p>Diyabet, hipertansiyon, kalp hastalıkları gibi kronik hastalıklarda beslenme tedavisi uyguluyorum.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h4 class="service-title">Gebelik ve Emzirme Dönemi</h4>
+                        <p>Hamilelik ve emzirme döneminde anne ve bebeğin sağlığı için özel beslenme programları sunuyorum.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -330,56 +444,10 @@ Merhaba! Ben Diyetisyen İdil Altun. Namık Kemal Üniversitesi Beslenme ve Diye
             <p style="text-align: center; max-width: 800px; margin: 0 auto;">
 Beslenmenin; yalnızca kilo almak ya da vermekten ibaret değil, sağlıklı ve kaliteli bir yaşam sürmenin temeli olduğuna inanıyorum. Aç kalmadan, yasaklarla değil; dengeli tercihlerle ve sürdürülebilir bir yaklaşımla beslenme alışkanlıklarını değiştirmeyi hedefliyorum.
 
-Ayrıca, “diyet” kavramının bozulan ve sıfırdan başlanması gereken bir şey olmadığını, hayat tarzımıza entegre edilmesi gereken sürdürülebilir bir düzen olduğunu danışanlarıma her zaman anlatıyorum. Günlük hayatta zaman zaman aksaklıklar yaşanabilir, fazla kaçan bir öğün ya da bir tatlı keyfiyle hayat durmaz. Önemli olan genel dengede sağlıklı beslenme alışkanlıklarını sürdürebilmek ve bu süreci suçluluk hissiyle değil, dengeyle yönetebilmek. Çünkü sağlıklı bir yaşamın sonucu olarak ideal kiloda olmak zaten beraberinde gelecektir.
+Ayrıca, "diyet" kavramının bozulan ve sıfırdan başlanması gereken bir şey olmadığını, hayat tarzımıza entegre edilmesi gereken sürdürülebilir bir düzen olduğunu danışanlarıma her zaman anlatıyorum. Günlük hayatta zaman zaman aksaklıklar yaşanabilir, fazla kaçan bir öğün ya da bir tatlı keyfiyle hayat durmaz. Önemli olan genel dengede sağlıklı beslenme alışkanlıklarını sürdürebilmek ve bu süreci suçluluk hissiyle değil, dengeyle yönetebilmek. Çünkü sağlıklı bir yaşamın sonucu olarak ideal kiloda olmak zaten beraberinde gelecektir.
 
 Sen de kendi sağlıklı yaşam yolculuğunu başlatmak istersen, ben buradayım.
             </p>
-        </div>
-    </section>
-
-  <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h3>Hizmetlerim</h3>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h4 class="service-title">Kilo Yönetimi</h4>
-                    <p>Kişiye özel kilo verme veya alma programları ile sağlıklı bir vücuda kavuşmanıza yardımcı oluyorum.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-procedures"></i>
-                    </div>
-                    <h4 class="service-title">Andulasyon Terapi</h4>
-                    <p>Andumedic 3 Pro cihazı ile uygulanan andulasyon terapi; kas ve eklem ağrılarını azaltır, kan dolaşımını iyileştirir, metabolizmayı hızlandırarak incelmeye yardımcı olur, stresi azaltır ve uyku kalitesini düzenler.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h4 class="service-title">Sporcu Beslenmesi</h4>
-                    <p>Fitness Nutrition Specailst (FNS) sertifikalı bir diyetisyen olarak performansınızı artırmak ve hedeflerinize ulaşmak için spor dalınıza özel beslenme programları hazırlıyorum.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h4 class="service-title">Kronik Hastalıklarda Beslenme</h4>
-                    <p>Diyabet, hipertansiyon, kalp hastalıkları gibi kronik hastalıklarda beslenme tedavisi uyguluyorum.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-baby"></i>
-                    </div>
-                    <h4 class="service-title">Gebelik ve Emzirme Dönemi</h4>
-                    <p>Hamilelik ve emzirme döneminde anne ve bebeğin sağlığı için özel beslenme programları sunuyorum.</p>
-                </div>
-            </div>
         </div>
     </section>
 
